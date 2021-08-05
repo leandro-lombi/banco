@@ -23,4 +23,12 @@ func main()  {
 
 	fmt.Println(contaLeandro)
 	fmt.Println(contaLeandro2)
+
+	// Trabalhando com ponteiros
+	var contaLeandro3 *ContaCorrente
+	contaLeandro3 = new(ContaCorrente)
+	contaLeandro3.titular = "Leandro 3"
+	contaLeandro.saldo = 789.1
+
+	fmt.Println(*contaLeandro3)
 }
