@@ -4,10 +4,10 @@ import "github.com/lnl/banco/clientes"
 
 // Estrutura da conta corrente do banco
 type ContaCorrente struct {
-	Titular clientes.Titular
+	Titular       clientes.Titular
 	NumeroAgencia int
-	NumeroConta int
-	saldo float64
+	NumeroConta   int
+	saldo         float64
 }
 
 func (c *ContaCorrente) Sacar(valor float64) string {
@@ -17,7 +17,7 @@ func (c *ContaCorrente) Sacar(valor float64) string {
 
 	podeSacar := valor <= c.saldo
 
- 	if podeSacar {
+	if podeSacar {
 		c.saldo -= valor
 		return "Saque realizado com sucesso"
 	} else {
