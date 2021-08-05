@@ -1,34 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-// Estrutura da conta corrente do banco
-type ContaCorrente struct {
-	titular string
-	numeroAgencia int
-	numeroConta int
-	saldo float64
+	"github.com/lnl/banco/contas"
+)
+
+func PagarBoleto(conta verificarConta, valor float64) {
+	conta.Sacar(valor)
 }
 
-func main()  {
-	// Inserir alguns campos específicos
-	contaLeandro := ContaCorrente{
-		titular: "Leandro",
-		numeroConta: 123654,
-		saldo: 102.6,
-	}
+type verificarConta interface {
+	Sacar(valor float64) string
+}
 
-	// Inserir todos os campos
-	contaLeandro2 := ContaCorrente{"Lombi", 526, 654321, 6589.9}
+func main() {
+	contaLeandro := contas.ContaCorrente{}
 
-	fmt.Println(contaLeandro)
-	fmt.Println(contaLeandro2)
+	contaLeandro.Depositar(100)
 
-	// Trabalhando com ponteiros
-	var contaLeandro3 *ContaCorrente
-	contaLeandro3 = new(ContaCorrente)
-	contaLeandro3.titular = "Leandro 3"
-	contaLeandro.saldo = 789.1
+	fmt.Println(contaLeandro.ObterSaldo())
 
-	fmt.Println(*contaLeandro3)
+	PagarBoleto(&contaLeandro, 82)
+
+	fmt.Println(contaLeandro.ObterSaldo())
+
+	contaLombi := contas.ContaPoupanca{}
+
+	fmt.Println(contaLombi)
+	contaLombi.Depositar(50)
+	fmt.Println(contaLombi.ObterSaldo())
+	contaLombi.Sacar(15)
+	fmt.Println(contaLombi.ObterSaldo())
+
+	PagarBoleto(&contaLombi, 8)
+
+	fmt.Println(contaLombi.ObterSaldo())
 }
