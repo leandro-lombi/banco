@@ -1,8 +1,10 @@
 package contas
 
+import "github.com/lnl/banco/clientes"
+
 // Estrutura da conta corrente do banco
 type ContaCorrente struct {
-	Titular string
+	Titular clientes.Titular
 	NumeroAgencia int
 	NumeroConta int
 	Saldo float64

@@ -4,19 +4,27 @@ import (
 	"fmt"
 
 	"github.com/lnl/banco/contas"
+	"github.com/lnl/banco/clientes"
 )
 
 func main()  {
 	contaLeandro := contas.ContaCorrente{
-		Titular: "Leandro",
+		Titular: clientes.Titular{
+			Nome: "Leandro",
+			CPF: "653.325.326-40",
+			Profissao: "Analista",
+		},
 		NumeroConta: 123654,
 		Saldo: 102.6,
 	}
 
-	contaLombi := contas.ContaCorrente {
-		Titular: "Lombi",
-		Saldo: 536.2,
+	clienteLombi := clientes.Titular{
+		Nome: "Lombi",
+		CPF: "123.456.789-40",
+		Profissao: "Desenvolvedor",
 	}
+
+	contaLombi := contas.ContaCorrente{clienteLombi, 1236, 6989, 536.2}
 
 	fmt.Println(contaLeandro.Saldo)
 	fmt.Println(contaLeandro.Sacar(30))
